@@ -1,0 +1,89 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Product Details</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/shop">Home</a></li>
+        <li class="breadcrumb-item"><a href="fruits_product_view">Product</a></li>
+        <li class="breadcrumb-item active text-white">Product Update</li>
+    </ol>
+</div>
+
+<div class="container-fluid py-5 mt-5">
+    <div class="container py-5">
+        <div class="row g-4 mb-5">
+            <div class="col-lg-12">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="border rounded">
+                            <img src="{{ product.image.url }}" class="img-fluid rounded" alt="Product Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="mb-4">DETAILS: {{ product.name }}</h2>
+                        <form  method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control border-0 me-4" name="name" value="{{ product.name }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <label for="price">Price</label>
+                                        <input type="number" class="form-control border-0" name="price" value="{{ product.price }}" required>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <label for="price"> DiscountPrice</label>
+                                        <input type="number" class="form-control border-0" name="dsprice" value="{{ product.discount }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <label class="form-label my-3">Category</label>
+                                        <select name="category" class="form-select">
+                                            <option selected disabled  value="">Select Category</option>
+                                            <option value="Fruits">Fruits</option>
+                                            <option value="Vegetables">Vegetables</option>
+                                            <option value="Herb">Herb</option>
+                                        </select>
+                                     </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="border-bottom rounded my-4">
+                                        <label for="description">Description</label>
+
+                                        <textarea name="description" class="form-control border-0" cols="30" rows="3" spellcheck="false">{{ product.description }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <label for="image">Change Image</label>
+                                        <input type="file" class="form-control border-0" name="image">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <label for="price"> DiscountPrice</label>
+                                        <input type="number" class="form-control border-0" name="quantity" value="{{ product.quantity }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <button type="submit" class="btn btn-primary rounded-pill px-4 py-3">Update Product</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Product Details</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/shop">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Product</a></li>
+        <li class="breadcrumb-item active text-white">Product Details</li>
+    </ol>
+</div>
+<div class="container-fluid fruite py-5">
+    <div class="container py-5">
+        <div class="tab-class text-center">
+            <div class="row g-4">
+                <div class="col-lg-4 text-start">
+                    <h1>Our Organic Products</h1>
+                </div>
+                <div class="col-lg-8 text-end">
+                    <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                        <li class="nav-item">
+                            <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
+                                <span class="text-dark" style="width: 130px;">All Products</span>
+                            </a>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        <div class="col-lg-12">
+                            <div class="row g-4">
+{% for i in prod %}
+
+                                <div class="col-md-6 col-lg-4 col-xl-3">
+                                    <div class="rounded position-relative fruite-item">
+                                        <div class="fruite-img">
+                                            <img src="{{i.image.url}}" class="img-fluid w-100 rounded-top" alt="">
+                                        </div>
+                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{i.category}}</div>
+                                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                            <h4>{{i.name}}</h4>
+                                            <p>Detail:{{i.description}}</p>
+                                            <p>Discount:{{i.discount}}%</p>
+                                            <p class="text-dark fs-5 fw-bold mb-0">Quantity:{{i.quantity}}</p>
+                                            <p class="text-dark fs-5 fw-bold mb-0"><del>₹{{i.price}}.00</del></p>
+
+                                            
+                                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                                <p class="text-dark fs-5 fw-bold mb-0">₹{{i.discountprice}}.00</p>
+                                                <a href="Fruits_update_product?product_id={{i.id}}" class="btn border border-secondary rounded-pill px-3 text-primary">update</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+{% empty %}
+
+<h2>No products available.</h2>
+
+{% endfor %}
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>      
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

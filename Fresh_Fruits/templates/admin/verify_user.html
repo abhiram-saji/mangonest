@@ -1,0 +1,108 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block content %}    <div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">User</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Verify</a></li>
+        <li class="breadcrumb-item active text-white">User</li>
+    </ol>
+</div>
+<!-- Single Page Header End -->
+
+
+<!-- Cart Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="table-responsive">
+            <h1 class="mb-4 text-center">User List</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Approvel</th>
+                    <th scope="col">Rejection</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for user in user %}
+                    <tr>
+                       
+                        <td>
+                            <p class="mb-0 mt-4">{{user.user.first_name}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{user.user.email}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{user.address}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{user.phone}}</p>
+                        </td>
+                        <td>
+                            <a href="admin_approve?user_id={{ user.user_id }}" class="btn btn-md rounded-circle bg-light border mt-4">
+                                <i class="fa fa-check text-success"></i>
+                            </a>
+                        </td>
+                        
+                        <td>
+                            <a href="admin_reject?user_id={{ user.user_id }}" class="btn btn-md rounded-circle bg-light border mt-4" >
+                                <i class="fa fa-times text-danger"></i>
+                            </a>
+                        </td>
+                    
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+       
+
+        <div class="table-responsive">
+            <h1 class="mb-4 text-center">Verifyed User List</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Rejection</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                       
+                        <td>
+                            <p class="mb-0 mt-4">{{user.user.first_name}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{user.user.email}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{user.address}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{user.phone}}</p>
+                        </td>
+                        <td>
+                            <a href="admin_reject?user_id={{ user.user_id }}" class="btn btn-md rounded-circle bg-light border mt-4" >
+                                <i class="fa fa-times text-danger"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

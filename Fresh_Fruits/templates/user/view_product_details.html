@@ -1,0 +1,144 @@
+{% extends "user/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Product Details</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/user">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Product</a></li>
+        <li class="breadcrumb-item active text-white">Product Details</li>
+    </ol>
+</div>
+<form method="post">
+    {% csrf_token %}
+    <div class="container-fluid py-5 mt-5">
+        <div class="container py-5">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-8 col-xl-9">
+                    <div class="row g-4">
+                        {% for product in products %}
+                        <div class="col-lg-6">
+                            <div class="border rounded">
+                                <a href="#">
+                                    <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4 class="fw-bold mb-3">{{ product.name }}</h4>
+                            <p class="mb-3">Category: {{ product.category }}</p>
+                            <h5 class="fw-bold mb-3">₹{{ product.discountprice }}</h5>
+                            <h5 class="fw-bold mb-3">Quantity:{{ product.quantity }}</h5>
+
+                            <p class="mb-4">{{ product.description }}</p>
+
+                            <div class="input-group quantity mb-4" style="width: 120px;">
+                                <button type="button" class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input type="number" name="quantity" class="form-control form-control-sm text-center border-0" value="1" min="1" max="{{product.quantity}}">
+                                <button type="button" class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+
+                            <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
+                                <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                            </button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            
+       
+</form>
+
+<!-- JavaScript for Quantity Buttons -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".btn-minus, .btn-plus").forEach(function (button) {
+            button.addEventListener("click", function () {
+                let input = button.closest(".quantity").querySelector("input[name='quantity']");
+                let value = parseInt(input.value);
+
+                if (button.classList.contains("btn-minus") && value > 1) {
+                    input.value = value - 1;
+                } else if (button.classList.contains("btn-plus")) {
+                    input.value = value + 1;
+                }
+            });
+        });
+    });
+</script>
+               
+
+            <div class="col-lg-4 col-xl-3">
+                <div class="row g-4 fruite">
+                    <div class="col-lg-12">
+                        <div class="input-group w-100 mx-auto d-flex mb-4">
+                              </div>
+                        <div class="mb-4">
+                            <h4>Categories</h4>
+                            <ul class="list-unstyled fruite-categorie">
+                                <li>
+                                    <div class="d-flex justify-content-between fruite-name">
+                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Fruits</a>
+                                        <span>({{Fruits_count}})</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex justify-content-between fruite-name">
+                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Vegetables</a>
+                                        <span>({{Vegetables_count}})</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex justify-content-between fruite-name">
+                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Herb</a>
+                                        <span>({{Herb_count}})</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-12">
+                        <div class="position-relative">
+                            <img src="{% static "img/banner-fruits.jpg" %}" class="img-fluid w-100 rounded" alt="">
+                            <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
+                                <h3 class="text-secondary fw-bold">Fresh <br> Fruits <br> Banner</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="fw-bold mb-0">Related products</h1>
+        <div class="vesitable">
+            <div class="owl-carousel vegetable-carousel justify-content-center">
+                {% for i in prod %}
+                
+                <div class="border border-primary rounded position-relative vesitable-item">
+                    <div class="vesitable-img">
+                        <img src="{{i.image.url}}" class="img-fluid w-100 rounded-top" alt="">
+                    </div>
+                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">{{i.category}}</div>
+                    <div class="p-4 pb-0 rounded-bottom">
+                        <h4>{{i.name}}</h4>
+                        <p>{{i.description}}</p>
+                        <div class="d-flex justify-content-between flex-lg-wrap">
+                            <p class="text-dark fs-5 fw-bold">{{i.discountprice}}</p>
+                            <a href="details_product?p_id={{i.id}}" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

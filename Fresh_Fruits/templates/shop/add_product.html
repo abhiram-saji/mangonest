@@ -1,0 +1,94 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Product Details</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/shop">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Product</a></li>
+        <li class="breadcrumb-item active text-white">Product Details</li>
+    </ol>
+</div>
+
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">Product Details</h1>
+        
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-5 justify-content-center">
+                <div class="col-md-12 col-lg-6 col-xl-7">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Product Name<sup>*</sup></label>
+                                <input type="text" name="product_name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Product Price<sup>*</sup></label>
+                                <input type="number" name="product_price" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Category</label>
+                                <select name="category" class="form-select">
+                                    <option selected disabled  value="">Select Category</option>
+                                    <option value="Fruits">Fruits</option>
+                                    <option value="Vegetables">Vegetables</option>
+                                    <option value="Herb">Herb</option>
+                                </select>
+                            </div>
+                        </div>                        
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Quantity<sup>*</sup></label>
+                                <input type="number" name="quantity" class="form-control" required>   
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-item">
+                        <label class="form-label my-3">Discount (%)</label>
+                        <input type="number" name="discount" class="form-control" id="discount-input" max="100" min="0">
+                        <small class="text-danger" id="discount-error" style="display: none;">Discount cannot exceed 100%.</small>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="form-label my-3">Product Description</label>
+                        <textarea name="description" class="form-control" spellcheck="false" cols="30" rows="5" required id="description"></textarea>
+                        <small class="text-muted" id="char-count">0/500 characters</small>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="form-label my-3">Product Image</label>
+                        <input type="file" name="product_image" class="form-control" id="product-image-input">
+                        <img id="image-preview" src="#" alt="Product Image Preview" style="display: none; max-width: 100%; margin-top: 10px;">
+                    </div>
+
+                    <hr>
+
+                    <div class="col-lg-6 d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary border-0 py-3 px-4 rounded-pill text-white">Submit Now</button>
+                        <a href="/shop" class="btn btn-secondary border-0 py-3 px-4 rounded-pill text-white">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+   
+   
+    // Character Counter
+    document.getElementById('description').addEventListener('input', function() {
+        const charCount = this.value.length;
+        document.getElementById('char-count').textContent = `${charCount}/500 characters`;
+    });
+</script>
+{% endblock content %}

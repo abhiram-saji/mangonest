@@ -1,0 +1,95 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap');
+
+    body {
+        background: #f8f9fa;
+        font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    .table-container {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #0063FF;
+        color: white;
+    }
+
+    .emoji-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .empty-feedback {
+        text-align: center;
+        font-size: 16px;
+        color: #6c757d;
+        padding: 40px;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-center">User Feedback</h2>
+
+    <div class="table-container">
+        {% if feed %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>User</th>
+                    <th>User Email</th>
+                    <th>Product Name</th>
+                    <th>Emoji Reaction</th>
+                    <th>Message</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in feed %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ feedback.user.user.first_name }}</td>
+                    <td>{{ feedback.user.user.email }}</td>
+                    <td>{{ feedback.booking.product.name }}</td>
+                    <td>
+                        {% if feedback.reaction == '1' %}<label for="rating1" class="emoji">😠</label>
+                        {% elif feedback.reaction == '2' %}😕
+                        {% elif feedback.reaction == '3' %}😐
+                        {% elif feedback.reaction == '4' %}😊
+                        {% elif feedback.reaction == '5' %}😍
+                        {% endif %} 
+                        
+                    </td>
+                    <td>{{ feedback.feedback_message }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-feedback">No feedback available at the moment.</div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

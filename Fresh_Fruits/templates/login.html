@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">LOGIN</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active text-white">Login</li>
+    </ol>
+</div>
+<div class="container-fluid contact py-5">
+    <div class="container py-5">
+        <div class="p-5 bg-light rounded">
+            <div class="row g-5 justify-content-center">
+                <div class="col-12">
+                    <div class="text-center mx-auto" style="max-width: 700px;">
+                        <h1 class="text-primary">LOGIN</h1>
+                        {% comment %} <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> {% endcomment %}
+                    </div>
+                </div>
+                
+                <div class="col-lg-8 justify-content-center">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row ">  <div class="col-6 mb-3">
+                        <input type="text" class="w-100 form-control border-0 py-3 mb-4"  name="username" required placeholder="username">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <input type="password" class="w-100 form-control border-0 py-3 mb-4"  name="password" required placeholder="password">
+                    </div>
+                        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

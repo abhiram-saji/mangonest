@@ -1,0 +1,137 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block content %}    <div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Shop</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Verify</a></li>
+        <li class="breadcrumb-item active text-white">User</li>
+    </ol>
+</div>
+<!-- Single Page Header End -->
+
+
+<!-- Cart Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="table-responsive">
+            <h1 class="mb-4 text-center">shop List</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Shop Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Shop Owner Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Approvel</th>
+                    <th scope="col">Rejection</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in shop %}
+                    <tr>
+                        <th scope="row">
+                            <div class="d-flex align-items-center">
+                                <img src="{{i.image.url}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                            </div>
+                        </th>
+                        <td>
+                            <p class="mb-0 mt-4">{{i.user.first_name}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{i.shop_owner_name}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{i.user.email}}</p>
+                        </td>
+                        <td>
+                          <p class="mb-0 mt-4">{{i.address}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{i.phone}}</p>
+                          </td>
+                        <td>
+                          <p class="mb-0 mt-4">{{i.city}}</p>
+                        </td>
+                        <td>
+                            <a href="admin_approve?user_id={{ i.user_id }}" class="btn btn-md rounded-circle bg-light border mt-4">
+                                <i class="fa fa-check text-success"></i>
+                            </a>
+                        </td>
+                        
+                        <td>
+                            <a href="admin_reject?user_id={{ i.user_id }}" class="btn btn-md rounded-circle bg-light border mt-4" >
+                                <i class="fa fa-times text-danger"></i>
+                            </a>
+                        </td>
+                    
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+        
+
+        <div class="table-responsive">
+            <h1 class="mb-4 text-center"> Verifyed Shop List</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Shop Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Shop Owner Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Rejection</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in shops %}
+                    <tr>
+                        <th scope="row">
+                            <div class="d-flex align-items-center">
+                                <img src="{{i.image.url}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                            </div>
+                        </th>
+                        <td>
+                            <p class="mb-0 mt-4">{{i.user.first_name}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{i.shop_owner_name}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{i.user.email}}</p>
+                        </td>
+                        <td>
+                          <p class="mb-0 mt-4">{{i.address}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{i.phone}}</p>
+                          </td>
+                        <td>
+                          <p class="mb-0 mt-4">{{i.city}}</p>
+                        </td>
+                       
+                        
+                        <td>
+                            <a href="admin_approve?user_id={{ i.user_id }}" class="btn btn-md rounded-circle bg-light border mt-4" >
+                                <i class="fa fa-times text-danger"></i>
+                            </a>
+                        </td>
+                    
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

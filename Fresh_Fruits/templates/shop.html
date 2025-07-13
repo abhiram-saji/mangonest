@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">SHOP</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Register</a></li>
+        <li class="breadcrumb-item active text-white">Shop</li>
+    </ol>
+</div>
+<div class="container-fluid contact py-5">
+    <div class="container py-5">
+        <div class="p-5 bg-light rounded">
+            <div class="row g-5 justify-content-center">
+                <div class="col-12">
+                    <div class="text-center mx-auto" style="max-width: 700px;">
+                        <h1 class="text-primary">Shop Get in touch</h1>
+                        <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-8 justify-content-center">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row ">
+                            <div class="col-6 mb-3">
+                                 <input type="text" class="w-100 form-control border-0 py-3 mb-4" required  name="shop_name" placeholder="shop Name">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <input type="email" class="w-100 form-control border-0 py-3 mb-4"  name="email" required placeholder="shop Email">
+                            </div>
+                            <div class="col-6 mb-3">
+                            <input type="text" class="w-100 form-control border-0 py-3 mb-4"  name="owner_first_name" required placeholder="shop owner name">
+                          </div>
+                          <div class="col-6 mb-3">
+                        <input type="text" class="w-100 form-control border-0 py-3 mb-4"  name="phone_number" required placeholder="shop contact ">
+                    </div>
+                    <textarea class="w-100 form-control border-0 mb-4" rows="5" name="shop_address" cols="10" placeholder="Your Address"></textarea>
+                    <div class="col-6 mb-3">
+                        <input type="text" class="w-100 form-control border-0 py-3 mb-4"  name="city" required placeholder="city">
+                    </div>
+                    
+                    <div class="col-6 mb-3">
+                        <input type="file" class="w-100 form-control border-0 py-3 mb-4"  name="image" required >
+                    </div>
+                    <div class="col-6 mb-3">
+                        <input type="text" class="w-100 form-control border-0 py-3 mb-4"  name="username" required placeholder="username">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <input type="password" class="w-100 form-control border-0 py-3 mb-4"  name="password" required placeholder="password">
+                    </div>
+                        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
